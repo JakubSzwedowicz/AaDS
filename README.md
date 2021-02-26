@@ -1,4 +1,4 @@
-# SaOP
+# AaDS
 Project contains applications, algorithms and sollutions to problems described below
 
 
