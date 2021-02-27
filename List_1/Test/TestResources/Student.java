@@ -1,4 +1,4 @@
-package List_1;
+package TestResources;
 
 public class Student implements Comparable {
     // MEMBERS

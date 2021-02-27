@@ -1,4 +1,4 @@
-package List_1;
+package TestResources;
 
 public class Stopwatch {
 
@@ -20,7 +20,7 @@ public class Stopwatch {
      * if the watch has never been started then
      * return zero
      */
-    public long getElapsedTime() {
+    public long getElapsedTimeNano() {
         if (startTime == -1) {
             return 0;
         }
@@ -29,6 +29,10 @@ public class Stopwatch {
         } else {
             return stopTime-startTime;
         }
+    }
+
+    public long getElapsedTimeMilis(){
+        return getElapsedTimeNano() / 1000000;
     }
 
     public Stopwatch reset() {

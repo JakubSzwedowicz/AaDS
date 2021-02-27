@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, Iterable<E> {
     // MEMBERS
-    transient private int m_size;
+    private int m_size;
     transient private int m_capacity;
     private Object[] m_array;
 
@@ -42,19 +42,19 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
         }
     }
 
-    MyArrayList(Collection<? extends E> a_collection) throws NullPointerException{
-        if(a_collection == null){
+    MyArrayList(Collection<? extends E> a_collection) throws NullPointerException {
+        if (a_collection == null) {
             throw new NullPointerException("Can't construct MyArrayList from null collection!");
         }
         m_size = 0;
         m_capacity = a_collection.size() + (a_collection.size() >> 1);
-        if(m_capacity < 0){
+        if (m_capacity < 0) {
             m_array = EMPTY_ARRAY;
         } else {
             m_array = new Object[m_capacity];
         }
         // Shallow or deep copy?
-        for(E e : a_collection){
+        for (E e : a_collection) {
             m_array[m_size++] = e;
         }
 
@@ -128,7 +128,7 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
 
     public void clear() {
         Iterator<E> it = this.iterator();
-        for(int i = 0; i < m_size; i++){
+        for (int i = 0; i < m_size; i++) {
             m_array[i] = null;
         }
         m_size = 0;
@@ -158,7 +158,7 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
         return Arrays.stream(m_array).anyMatch(a_element::equals);
     }
 
-    // removes first object within the array that equals(a_object)
+    // Removes first object within the array that equals(a_object)
     // true if found and removed, false otherwise
     public boolean remove(Object a_object) {
         if (a_object == null) {
@@ -174,6 +174,9 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
         return false;
     }
 
+    // Removes element under specified index using shiftLeft.
+    // throws if a_index < 0 || a_index >= m_size
+    // returns removed element
     public E remove(int a_index) throws IndexOutOfBoundsException {
         if (a_index < 0 || a_index >= m_size) {
             throw new IndexOutOfBoundsException("Given index is out of range!"
@@ -232,21 +235,23 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
         if (m_size != 0) {
             int end = output.length();
             output.replace(end - 2, end, "]");
+        } else {
+            output.append("]");
         }
         return output.toString();
     }
 
     @Override
-    public boolean equals(Object a_object){
-        if(!(a_object instanceof MyArrayList<?>)){
+    public boolean equals(Object a_object) {
+        if (!(a_object instanceof MyArrayList<?>)) {
             return false;
         }
         MyArrayList<?> someArray = (MyArrayList<?>) a_object;
-        if(someArray.m_size != m_size){
+        if (someArray.m_size != m_size) {
             return false;
         }
-        for(int i = 0; i < m_size; i++){
-            if(!(m_array[i].equals(someArray.m_array[i]))){
+        for (int i = 0; i < m_size; i++) {
+            if (!(m_array[i].equals(someArray.m_array[i]))) {
                 return false;
             }
         }
@@ -353,25 +358,36 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
 
         @Override
         public boolean hasNext() {
-            return m_currentElement < (m_size);
+            return m_currentElement != m_size;
         }
 
         @Override
-        public E next() {
+        public E next() throws NoSuchElementException {
             if (!hasNext()) {
                 throw new NoSuchElementException("Cannot invoke next() if there is no more elements to iterate over");
             }
-            return (E) m_array[(m_currentElement++)];
+            @SuppressWarnings("unchecked")
+            E ret = (E) m_array[(m_currentElement++)];
+            return ret;
         }
 
         @Override
-        public void remove() {
-            shiftLeft(m_currentElement, m_size, 1);
-            m_size--;
+        public void remove() throws RuntimeException {
+            if (m_currentElement != 0) {
+                boolean res = false;
+                res = shiftLeft(m_currentElement - 1, m_size - 1, 1);
+                m_size--;
+                if (!res) {
+                    throw new RuntimeException("Removing element failed!"
+                            + "\n\tremoved element index = " + (m_currentElement - 1));
+                }
+            } else {
+                throw new IllegalStateException("Iterator wasn't incremented yet!");
+            }
         }
 
         @Override
-        public void forEachRemaining(Consumer<? super E> action) {
+        public void forEachRemaining(Consumer<? super E> action) throws NullPointerException {
             Objects.requireNonNull(action);
             while (hasNext()) {
                 action.accept(next());
@@ -387,5 +403,6 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
     @Serial
     private void readObject(ObjectInputStream a_ois) throws ClassNotFoundException, IOException {
         a_ois.defaultReadObject();    // toy implementation actually needless
+        m_capacity = m_array.length;
     }
 }
