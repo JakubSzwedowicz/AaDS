@@ -355,6 +355,7 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
     // custom iterator class for iterating over MyArrayList
     private class CustomIterator<E> implements Iterator<E> {
         private int m_currentElement = 0;
+        private boolean m_removed = true;
 
         @Override
         public boolean hasNext() {
@@ -368,21 +369,22 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
             }
             @SuppressWarnings("unchecked")
             E ret = (E) m_array[(m_currentElement++)];
+            m_removed = false;
             return ret;
         }
 
         @Override
         public void remove() throws RuntimeException {
-            if (m_currentElement != 0) {
-                boolean res = false;
-                res = shiftLeft(m_currentElement - 1, m_size - 1, 1);
+            if (m_removed) {
+                throw new IllegalStateException("Iterator hasn't been incremented yet or element is already removed!");
+            } else {
+                m_removed = shiftLeft(m_currentElement - 1, m_size - 1, 1);
                 m_size--;
-                if (!res) {
+                m_currentElement --;
+                if (!m_removed) {
                     throw new RuntimeException("Removing element failed!"
                             + "\n\tremoved element index = " + (m_currentElement - 1));
                 }
-            } else {
-                throw new IllegalStateException("Iterator wasn't incremented yet!");
             }
         }
 
