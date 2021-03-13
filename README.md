@@ -1,5 +1,5 @@
 # AaDS
-Project contains applications, algorithms and sollutions to problems described below
+Project contains applications, algorithms and solutions to problems described below
 
 
 # Projects
@@ -7,10 +7,14 @@ Project contains applications, algorithms and sollutions to problems described b
 
 (Description in progress)
 
+## List 2
+
+(Description in progress) 
+
 # Basic and external libraries
 
 - openJDK-15,
-- Jupyter: Junit 5.4 (for List 1),
+- Jupyter: Junit 5.4 (for Lists: 1, 2),
 
 # Author
 
