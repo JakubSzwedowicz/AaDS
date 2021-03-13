@@ -2,7 +2,6 @@ package Task2;
 
 import java.util.Collection;
 import java.util.EmptyStackException;
-import java.util.Iterator;
 
 /**
  * @Author Jakub Szwedowicz
@@ -14,7 +13,7 @@ public class MyStack<T> implements IStack<T> {
     private Object[] stack;
     private int size;
     private final int capacity;
-    private int peak;
+    private int peek;
 
     // PUBLIC
 
@@ -24,9 +23,9 @@ public class MyStack<T> implements IStack<T> {
         size = collection.size();
         capacity = size;
         if(size == 0){
-            peak = 0;
+            peek = 0;
         } else {
-            peak = capacity - 1;
+            peek = capacity - 1;
         }
         stack = collection.toArray();
     }
@@ -37,7 +36,7 @@ public class MyStack<T> implements IStack<T> {
         this.capacity = capacity;
         stack = new Object[capacity];
         size = 0;
-        peak = 0;
+        peek = 0;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class MyStack<T> implements IStack<T> {
             throw new EmptyStackException();
         }
         @SuppressWarnings("unchecked")
-        T res = (T) stack[peak];
+        T res = (T) stack[peek];
         incrDecrPeakAndSize(-1);
         return res;
     }
@@ -64,7 +63,7 @@ public class MyStack<T> implements IStack<T> {
     @Override
     public void push(T elem){
         incrDecrPeakAndSize(1);
-        stack[peak] = elem;
+        stack[peek] = elem;
     }
 
     @Override
@@ -78,13 +77,13 @@ public class MyStack<T> implements IStack<T> {
             throw new EmptyStackException();
         }
         @SuppressWarnings("unchecked")
-        T res = (T) stack[peak];
+        T res = (T) stack[peek];
         return res;
     }
 
     public String toString(){
-        StringBuilder output = new StringBuilder("Stack: size = " + size + ", capacity = " + capacity + ", peak = " + peak);
-        int k = peak;
+        StringBuilder output = new StringBuilder("Stack: size = " + size + ", capacity = " + capacity + ", peak = " + peek);
+        int k = peek;
         for(int i = size; i != -1; i--){
             output.append("\n").append(i).append(": ").append(stack[k--]);
             if(k == -1){
@@ -100,11 +99,11 @@ public class MyStack<T> implements IStack<T> {
         incrDecrSize(step);
     }
     private void incrDecrPeak(int step){
-        peak += step;
-        if (peak == capacity) {
-            peak = 0;
-        } else if (peak == -1) {
-            peak = capacity - 1;
+        peek += step;
+        if (peek == capacity) {
+            peek = 0;
+        } else if (peek == -1) {
+            peek = capacity - 1;
         }
     }
     private void incrDecrSize(int step){
