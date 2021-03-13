@@ -96,13 +96,19 @@ public class MyStack<T> implements IStack<T> {
 
     // PRIVATE
     private void incrDecrPeakAndSize(int step) {
+        incrDecrPeak(step);
+        incrDecrSize(step);
+    }
+    private void incrDecrPeak(int step){
         peak += step;
-        size += step;
         if (peak == capacity) {
             peak = 0;
         } else if (peak == -1) {
             peak = capacity - 1;
         }
+    }
+    private void incrDecrSize(int step){
+        size += step;
         // Size will never drop below 0
         if (size > capacity) {
             size = capacity;
