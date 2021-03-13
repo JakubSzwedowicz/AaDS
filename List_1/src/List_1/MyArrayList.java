@@ -209,6 +209,7 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
 
     // getters
     public int size() {
+        // Nul też jest elementem
         return m_size;
     }
 
@@ -281,6 +282,12 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
             System.out.println("Adding (10, 10, 10) starting from the 3rd index:");
             System.out.println(a.addAll(Arrays.asList(10, 10, 10), 3));
             System.out.println(a);
+            Iterator<Integer> it = a.iterator();
+            while(it.hasNext()){
+                if(it.next() == 10){
+                    a.add(3);
+                }
+            }
 //            System.out.println("shifting to left by from 3rd index by 2");
             return true;
         } catch (Exception e) {
@@ -307,7 +314,7 @@ public class MyArrayList<E> implements RandomAccess, Cloneable, Serializable, It
         return true;
     }
 
-    // discards elements [a_begin, a_begin + a_positions]
+    // discards elements [a_begin, a_begin + a_positiprivate class CustomIterator<E> implements Iterator<E> {ons]
     private boolean shiftLeft(int a_begin, int a_end, int a_positions) {
         if (a_begin < 0 || a_begin >= m_size || a_end < 0 || a_end >= m_size || a_positions < 0) {
             return false;
