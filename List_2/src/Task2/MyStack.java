@@ -10,25 +10,31 @@ import java.util.EmptyStackException;
  */
 public class MyStack<T> implements IStack<T> {
     // MEMBERS
-    private Object[] stack;
-    private int size;
-    private final int capacity;
-    private int peek;
+    protected Object[] stack;
+    protected int size;
+    protected final int capacity;
+    protected int top;
 
+    private static final int MINIMAL_CAPACITY = 10;
     // PUBLIC
 
     // constructors
 
-    public MyStack(Collection<? super T> collection){
+    public MyStack() {
+        this(MINIMAL_CAPACITY);
+    }
+
+    public MyStack(Collection<? super T> collection) {
         size = collection.size();
         capacity = size;
-        if(size == 0){
-            peek = 0;
+        if (size == 0) {
+            top = 0;
         } else {
-            peek = capacity - 1;
+            top = capacity - 1;
         }
         stack = collection.toArray();
     }
+
     public MyStack(int capacity) {
         if (capacity < 0) {
             throw new IllegalArgumentException("Given capacity cannot be negative! \n\t capacity = " + capacity);
@@ -36,7 +42,7 @@ public class MyStack<T> implements IStack<T> {
         this.capacity = capacity;
         stack = new Object[capacity];
         size = 0;
-        peek = 0;
+        top = 0;
     }
 
     @Override
@@ -55,15 +61,15 @@ public class MyStack<T> implements IStack<T> {
             throw new EmptyStackException();
         }
         @SuppressWarnings("unchecked")
-        T res = (T) stack[peek];
-        incrDecrPeakAndSize(-1);
+        T res = (T) stack[top];
+        incrDecrTopAndSize(-1);
         return res;
     }
 
     @Override
-    public void push(T elem){
-        incrDecrPeakAndSize(1);
-        stack[peek] = elem;
+    public void push(T elem) {
+        incrDecrTopAndSize(1);
+        stack[top] = elem;
     }
 
     @Override
@@ -73,44 +79,53 @@ public class MyStack<T> implements IStack<T> {
 
     @Override
     public T top() throws EmptyStackException {
-        if(isEmpty()){
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
         @SuppressWarnings("unchecked")
-        T res = (T) stack[peek];
+        T res = (T) stack[top];
         return res;
     }
 
-    public String toString(){
-        StringBuilder output = new StringBuilder("Stack: size = " + size + ", capacity = " + capacity + ", peak = " + peek);
-        int k = peek;
-        for(int i = size; i != -1; i--){
+    public String toString() {
+        StringBuilder output = new StringBuilder(
+                "Stack: size = " + size + ", capacity = " + capacity + ", peak = " + top);
+        int k = top;
+        for (int i = size; i != -1; i--) {
             output.append("\n").append(i).append(": ").append(stack[k--]);
-            if(k == -1){
-                k = size -1;
+            if (k == -1) {
+                k = size - 1;
             }
         }
         return output.toString();
     }
 
     // PRIVATE
-    private void incrDecrPeakAndSize(int step) {
-        incrDecrPeak(step);
+    private void incrDecrTopAndSize(int step) {
+        incrDecrTop(step);
         incrDecrSize(step);
     }
-    private void incrDecrPeak(int step){
+
+    private void incrDecrTop(int step) {
+        top = incrDecrTop(step, top);
+    }
+
+    private void incrDecrSize(int step) {
+        size += step;
+        // Size will never drop below 0
+        if (size > capacity) {
+            size = capacity;
+        }
+    }
+
+    // PROTECTED
+    protected int incrDecrTop(int step, int peek) {
         peek += step;
         if (peek == capacity) {
             peek = 0;
         } else if (peek == -1) {
             peek = capacity - 1;
         }
-    }
-    private void incrDecrSize(int step){
-        size += step;
-        // Size will never drop below 0
-        if (size > capacity) {
-            size = capacity;
-        }
+        return peek;
     }
 }
