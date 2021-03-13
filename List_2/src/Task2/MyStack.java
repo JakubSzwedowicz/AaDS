@@ -23,7 +23,11 @@ public class MyStack<T> implements IStack<T> {
     public MyStack(Collection<? super T> collection){
         size = collection.size();
         capacity = size;
-        peak = capacity;
+        if(size == 0){
+            peak = 0;
+        } else {
+            peak = capacity - 1;
+        }
         stack = collection.toArray();
     }
     public MyStack(int capacity) {
@@ -38,34 +42,70 @@ public class MyStack<T> implements IStack<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
-    public boolean isFull(){
-        return false;
+    public boolean isFull() {
+        return size == capacity;
     }
 
     @Override
     public T pop() throws EmptyStackException {
-        return null;
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        @SuppressWarnings("unchecked")
+        T res = (T) stack[peak];
+        incrDecrPeakAndSize(-1);
+        return res;
     }
 
     @Override
     public void push(T elem){
+        incrDecrPeakAndSize(1);
+        stack[peak] = elem;
     }
 
     @Override
     public int size() {
-        return -1;
+        return size;
     }
 
     @Override
     public T top() throws EmptyStackException {
-        return null;
+        if(isEmpty()){
+            throw new EmptyStackException();
+        }
+        @SuppressWarnings("unchecked")
+        T res = (T) stack[peak];
+        return res;
+    }
+
+    public String toString(){
+        StringBuilder output = new StringBuilder("Stack: size = " + size + ", capacity = " + capacity + ", peak = " + peak);
+        int k = peak;
+        for(int i = size; i != -1; i--){
+            output.append("\n").append(i).append(": ").append(stack[k--]);
+            if(k == -1){
+                k = size -1;
+            }
+        }
+        return output.toString();
     }
 
     // PRIVATE
     private void incrDecrPeakAndSize(int step) {
+        peak += step;
+        size += step;
+        if (peak == capacity) {
+            peak = 0;
+        } else if (peak == -1) {
+            peak = capacity - 1;
+        }
+        // Size will never drop below 0
+        if (size > capacity) {
+            size = capacity;
+        }
     }
 }

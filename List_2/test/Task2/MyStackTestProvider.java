@@ -45,7 +45,7 @@ public class MyStackTestProvider {
                         new MyStack<Integer>(10)
                 ),
                 Arguments.of(
-                        false,
+                        true,
                         new MyStack<Double>(Collections.emptyList())
                 ),
                 Arguments.of(
