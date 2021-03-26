@@ -11,10 +11,18 @@ Project contains applications, algorithms and solutions to problems described be
 
 (Description in progress) 
 
+## List 3
+
+(Description in progress) 
+
+## List 4
+
+(Description in progress) 
+
 # Basic and external libraries
 
 - openJDK-15,
-- Jupyter: Junit 5.4 (for Lists: 1, 2),
+- Jupyter: Junit 5.4 (for Lists: 1, 2, 3, 4),
 
 # Author
 
