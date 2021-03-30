@@ -7,23 +7,23 @@ import java.util.Random;
  */
 public class Algorithms {
     private static Random generator = new Random();
-    public static int kthSmallest(int[] tab, int kthSmallest) throws IllegalArgumentException{
+    public static <T extends Comparable<? super T>> T kthSmallest(T[] tab, int kthSmallest) throws IllegalArgumentException{
         if(tab == null || tab.length == 0  || kthSmallest <= 0 || kthSmallest > tab.length){
             throw new IllegalArgumentException("Illegal parameters were passed!");
         }
         return kthSmallestHelper(tab, kthSmallest, 0, tab.length);
     }
 
-    private static int kthSmallestHelper(int[] tab, int kthSmallest, int begin, int end){
+    private static <T extends Comparable<? super T>> T kthSmallestHelper(T[] tab, int kthSmallest, int begin, int end){
         int smaller = begin;
         int equal = generator.nextInt(end - begin) + begin;
         int greater = end;
-        int pivot = tab[equal];
+        T pivot = tab[equal];
         for(int i = begin; i != greater; i++){
-            int number = tab[i];
-            if(number < pivot){
+            T value = tab[i];
+            if(value.compareTo(pivot) < 0){
                 swap(tab, i, smaller++);
-            } else if(number > pivot){
+            } else if(value.compareTo(pivot) > 0){
                 swap(tab, i--, --greater);
             }
         }
@@ -39,8 +39,8 @@ public class Algorithms {
         }
     }
 
-    private static void swap(int[] tab, int a, int b){
-        int k = tab[a];
+    private static <T extends Comparable<? super T>> void swap(T[] tab, int a, int b){
+        T k = tab[a];
         tab[a] = tab[b];
         tab[b] = k;
     }

@@ -7,6 +7,6 @@
 
 public class Main {
     public static void main(String[] args) {
-        Algorithms.kthSmallest(new int[]{2, 36, 5, 21, 8, 13, 11, 20, 5, 4, 1}, 5);
+        Algorithms.kthSmallest(new Integer[]{2, 36, 5, 21, 8, 13, 11, 20, 5, 4, 1}, 5);
     }
 }
