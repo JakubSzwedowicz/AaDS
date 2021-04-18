@@ -23,7 +23,7 @@ public class SortingAlgorithmsTest_Provider {
     // without -Djava.compiler=NONE set s_largeSize = 20001. Tests take ~1 minute
 //    private static final int s_largeSize = 20001;
 //     without -Djava.compiler=NONE set s_largeSize = 10001. Tests take ~15 seconds
-    private static final int s_largeSize = 10001;
+    private static final int s_largeSize = 2001;
 
     public static Stream<Arguments> testSortForLargeSetOfIntegersReverseOrderUniformDistribution_Provider() {
         Stream.Builder<Arguments> res = Stream.builder();

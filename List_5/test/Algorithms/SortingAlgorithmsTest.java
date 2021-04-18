@@ -125,6 +125,7 @@ class SortingAlgorithmsTest {
         @ParameterizedTest(name = "Test QuickSort for Large Set of Uniformly Distributed Integers in reverse order. Run: {index}")
         @MethodSource("Algorithms.SortingAlgorithmsTest_Provider#testSortForLargeSetOfIntegersReverseOrderUniformDistribution_Provider")
         <T extends Comparable<? super T>> void testQuickSortForLargeSetOfIntegersReverseOrder(List<T> array) {
+            System.out.println(array.get(0));
             SortingAlgorithms.QuickSort.sort(array);
             Assertions.assertTrue(isSorted(array));
         }
@@ -170,6 +171,7 @@ class SortingAlgorithmsTest {
         @ParameterizedTest(name = "Test BucketSort for Large Set of Uniformly Distributed Integers in reverse order. Run: {index}")
         @MethodSource("Algorithms.SortingAlgorithmsTest_Provider#testSortForLargeSetOfIntegersReverseOrderUniformDistribution_Provider")
         <T extends Number & Comparable<? super T>> void testBucketSortForLargeSetOfIntegersReverseOrder(List<T> array) {
+            System.out.println(array.get(0));
             SortingAlgorithms.BucketSort.sort(array);
             Assertions.assertTrue(isSorted(array));
         }
