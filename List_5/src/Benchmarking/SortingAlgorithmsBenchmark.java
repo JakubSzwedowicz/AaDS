@@ -246,7 +246,7 @@ public class SortingAlgorithmsBenchmark {
         }
 
         private static boolean benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfIntegersReverseOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersReverseOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.DefaultQuickSortWithSeparateComparator::sort
                     , "Benchmark DefaultQuickSortWithSeparateComparator for Large Set of Uniformly Distributed Integers in reverse order. Run:"
                     , "benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfIntegersReverseOrder", printInfoLevel);
@@ -254,7 +254,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfDoublesReverseOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesReverseOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.DefaultQuickSortWithSeparateComparator::sort
                     , "Benchmark DefaultQuickSortWithSeparateComparator for Large Set of Uniformly Distributed Doubles in reverse order. Run:"
                     , "benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfDoublesReverseOrder", printInfoLevel);
@@ -262,7 +262,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfIntegersRandomOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersRandomOrderWithHugeGaps_Provider();
             return sort(array, SortingAlgorithms.DefaultQuickSortWithSeparateComparator::sort
                     , "\"Benchmark DefaultQuickSortWithSeparateComparator for Large Set of huge amplitudes of Integers in random order. Run:\""
                     , "benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfIntegersRandomOrder", printInfoLevel);
@@ -270,7 +270,7 @@ public class SortingAlgorithmsBenchmark {
         }
 
         private static boolean benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfDoublesRandomOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesRandomOrderWithHugeGaps_Provider();
             return sort(array, SortingAlgorithms.DefaultQuickSortWithSeparateComparator::sort
                     , "Benchmark DefaultQuickSortWithSeparateComparator for Large Set of huge amplitudes of Doubles in random order. Run:"
                     , "benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfDoublesRandomOrder", printInfoLevel);
@@ -278,7 +278,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfIntegersNaturalOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersNaturalOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.DefaultQuickSortWithSeparateComparator::sort
                     , "Benchmark DefaultQuickSortWithSeparateComparator for Large Set of uniformly distributed Integers in natural order. Run:"
                     , "benchmarkDefaultQuickSortWithSeparateComparatorForLargeSetOfIntegersNaturalOrder", printInfoLevel);
@@ -352,7 +352,7 @@ public class SortingAlgorithmsBenchmark {
         }
 
         private static boolean benchmarkQuickSortForLargeSetOfIntegersReverseOrder(int printInfoLevel) {
-            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersReverseOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.QuickSort::sort
                     , "Benchmark QuickSort for Large Set of Uniformly Distributed Integers in reverse order. Run:"
                     , "benchmarkQuickSortForLargeSetOfIntegersReverseOrder", printInfoLevel);
@@ -360,7 +360,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkQuickSortForLargeSetOfDoublesReverseOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesReverseOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.QuickSort::sort
                     , "Benchmark QuickSort for Large Set of Uniformly Distributed Doubles in reverse order. Run:"
                     , "benchmarkQuickSortForLargeSetOfDoublesReverseOrder", printInfoLevel);
@@ -368,7 +368,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkQuickSortForLargeSetOfIntegersRandomOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersRandomOrderWithHugeGaps_Provider();
             return sort(array, SortingAlgorithms.QuickSort::sort
                     , "Benchmark QuickSort for Large Set of huge amplitudes of Integers in random order. Run:"
                     , "benchmarkQuickSortForLargeSetOfIntegersRandomOrder", printInfoLevel);
@@ -376,14 +376,14 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkQuickSortForLargeSetOfDoublesRandomOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesRandomOrderWithHugeGaps_Provider();
             return sort(array, SortingAlgorithms.QuickSort::sort
                     , "Benchmark QuickSort for Large Set of huge amplitudes of Doubles in random order. Run:"
                     , "benchmarkQuickSortForLargeSetOfDoublesRandomOrder", printInfoLevel);
         }
 
         private static boolean benchmarkQuickSortForLargeSetOfIntegersNaturalOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersNaturalOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.QuickSort::sort
                     , "Benchmark QuickSort for Large Set of uniformly distributed Integers in natural order. Run:"
                     , "benchmarkQuickSortForLargeSetOfIntegersNaturalOrder", printInfoLevel);
@@ -457,7 +457,7 @@ public class SortingAlgorithmsBenchmark {
         }
 
         private static boolean benchmarkBucketSortForLargeSetOfIntegersReverseOrder(int printInfoLevel) {
-            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersReverseOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.BucketSort::sort
                     , "Benchmark BucketSort for Large Set of Uniformly Distributed Integers in reverse order. Run:"
                     , "benchmarkBucketSortForLargeSetOfIntegersReverseOrder", printInfoLevel);
@@ -465,7 +465,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkBucketSortForLargeSetOfDoublesReverseOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesReverseOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.BucketSort::sort
                     , "Benchmark BucketSort for Large Set of Uniformly Distributed Doubles in reverse order. Run:"
                     , "benchmarkBucketSortForLargeSetOfDoublesReverseOrder", printInfoLevel);
@@ -473,7 +473,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkBucketSortForLargeSetOfIntegersRandomOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersRandomOrderWithHugeGaps_Provider();
             return sort(array, SortingAlgorithms.BucketSort::sort
                     , "Benchmark BucketSort for Large Set of huge amplitudes of Integers in random order. Run:"
                     , "benchmarkBucketSortForLargeSetOfIntegersRandomOrder", printInfoLevel);
@@ -481,7 +481,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkBucketSortForLargeSetOfDoublesRandomOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesRandomOrderWithHugeGaps_Provider();
             return sort(array, SortingAlgorithms.BucketSort::sort
                     , "Benchmark BucketSort for Large Set of huge amplitudes of Doubles in random order. Run:"
                     , "benchmarkBucketSortForLargeSetOfDoublesRandomOrder", printInfoLevel);
@@ -489,7 +489,7 @@ public class SortingAlgorithmsBenchmark {
 
 
         private static boolean benchmarkBucketSortForLargeSetOfIntegersNaturalOrder(int printInfoLevel) {
-            List<List<Double>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfDoublesNaturalOrderUniformDistribution_Provider();
+            List<List<Integer>> array = SortingAlgorithmsBenchmark_Provider.benchmarkSortForLargeSetOfIntegersNaturalOrderUniformDistribution_Provider();
             return sort(array, SortingAlgorithms.BucketSort::sort
                     , "Benchmark BucketSort for Large Set of uniformly distributed Integers in natural order. Run:"
                     , "benchmarkBucketSortForLargeSetOfDoublesNaturalOrder", printInfoLevel);

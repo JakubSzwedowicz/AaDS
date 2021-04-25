@@ -18,7 +18,7 @@ import java.util.stream.Stream;
  */
 public class SortingAlgorithmsBenchmark_Provider {
     private static final long s_seed = 0;
-    private static final int s_largeSize = 2001;
+    private static final int s_largeSize = 201;
 
     public static List<List<Integer>> benchmarkSortForLargeSetOfIntegersReverseOrderUniformDistribution_Provider() {
         List<List<Integer>> res = new ArrayList<>(3);

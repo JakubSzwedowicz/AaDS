@@ -1,9 +1,6 @@
 package Algorithms;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Jakub Szwedowicz
@@ -31,14 +28,15 @@ public class SortingAlgorithms {
             takeFromBuckets(array, buckets);
         }
 
-        private static int hashFunction(double value, double max, int bucketsNumber) {
-            return Math.max(0, (int) ((value / max) * (bucketsNumber - 1)));
+        private static int hashFunction(double value, double range, double max, int bucketsNumber) {
+            return (int)((range - (max - value)) / range) * (bucketsNumber - 1);
         }
 
         private static <T extends Number & Comparable<? super T>> void divideToBuckets(List<T> array, List<List<T>> buckets) {
-            final double max = Collections.max(array).doubleValue();
+            final double[] minMax = findMinMax(array);
+            final double range = minMax[1] - minMax[0];
             for (T e : array) {
-                int index = hashFunction(e.doubleValue(), max, buckets.size());
+                int index = hashFunction(e.doubleValue(), range, minMax[1], buckets.size());
                 buckets.get(index).add(e);
             }
         }
@@ -63,25 +61,42 @@ public class SortingAlgorithms {
             }
         }
 
+        private static <T extends Number & Comparable<? super T>> double[] findMinMax(List<T> array){
+            double min = Double.MAX_VALUE;
+            double max = - min;
+            for(T ele : array){
+                double e = ele.doubleValue();
+                if(e < min){
+                    min = e;
+                } else if(e > max){
+                    max = e;
+                }
+            }
+            return new double[]{min, max};
+        }
     }
 
     public static class QuickSort {
         // The algorithm is in place!
         public static <T extends Comparable<? super T>> void sort(List<T> array) {
-            sortHelper(array, 0, array.size());
+            sortHelper(array, 0, array.size(), 5);
         }
 
-        private static <T extends Comparable<? super T>> void sortHelper(List<T> array, int begin, int end) {
+        public static <T extends Comparable<? super T>> void sort(List<T> array, int magicNumber) {
+            sortHelper(array, 0, array.size(), magicNumber);
+        }
+
+        private static <T extends Comparable<? super T>> void sortHelper(List<T> array, int begin, int end, int magicNumber) {
             if (begin < end - 1) {
-                int pivot = partition(array, begin, end);
-                sortHelper(array, begin, pivot);
-                sortHelper(array, pivot + 1, end);
+                int pivot = partition(array, begin, end, magicNumber);
+                sortHelper(array, begin, pivot, magicNumber);
+                sortHelper(array, pivot + 1, end, magicNumber);
             }
         }
 
-        private static <T extends Comparable<? super T>> int partition(List<T> array, int begin, int end) {
+        private static <T extends Comparable<? super T>> int partition(List<T> array, int begin, int end, int magicNumber) {
             // Parametered magic five algorithm with argument 'width' which doesn't have to be 5.
-            int pivot_index = Pivot.getPivot(array, begin, end, 3);
+            int pivot_index = Pivot.getPivot(array, begin, end, magicNumber);
             T pivot = array.get(pivot_index);
             int j = begin;
             for (int i = begin; i < end; i++) {

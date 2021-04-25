@@ -15,8 +15,8 @@ import java.util.List;
 public class main {
     public static void main(String[] args){
         // Try one of these!
-        SortingAlgorithmsBenchmark.runBenchmark(0, 10);
-//        SortingAlgorithmsBenchmark.runBenchmark(1, 10);
+//        SortingAlgorithmsBenchmark.runBenchmark(0, 10);
+        SortingAlgorithmsBenchmark.runBenchmark(1, 10);
 //        SortingAlgorithmsBenchmark.runBenchmark(2, 10);
 //        SortingAlgorithmsBenchmark.runBenchmark(3, 10);
 
